@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSubjectsTable extends Migration
+class AddForeignkeysToSchedules extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateSubjectsTable extends Migration
      */
     public function up()
     {
-        Schema::create('subjects', function (Blueprint $table) {
-            $table->id();
-            $table->string("name_sub");
-            $table->string("name_teacher");
-            $table->unsignedBigInteger('groupID');
-            $table->timestamps();
+        Schema::table('schedules', function (Blueprint $table) {
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateSubjectsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('subjects');
+        Schema::table('schedules', function (Blueprint $table) {
+            //
+        });
     }
 }
