@@ -20,4 +20,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[Controllers\DashboardController::class, 'lol'])->middleware(['auth'])->name('dashboard');
 
+Route::view('form','addTeacher');
+
+Route::post('submit',[Controllers\AddTeacherController::class,'addTeacher']);
+
 require __DIR__.'/auth.php';

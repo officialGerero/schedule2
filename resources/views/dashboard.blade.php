@@ -16,6 +16,7 @@
                             {{ $user->name }}
                         @endforeach
                     @endforeach
+                    {{ dd($subjects) }}
                 </div>
             </div>
         </div>
