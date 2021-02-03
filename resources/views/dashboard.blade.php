@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in! <br>
                     @foreach($subjects as $subject)
-                        {{ $subject->name_sub }} 123123131311
+                        {{ $subject->name_sub }} |
                         @foreach($subject->subjectToUserRel as $user)
                             {{ $user->name }}
                         @endforeach
