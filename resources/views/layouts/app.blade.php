@@ -32,5 +32,6 @@
                 {{ $slot }}
             </main>
         </div>
+        <script src="{{ asset('js/main.js') }}" type="text/javascript">alert("huy")</script>
     </body>
 </html>
