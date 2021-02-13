@@ -25,7 +25,7 @@ class Subject extends Model
         return $this->hasMany('\App\Models\User','id','groupID');
     }
     public function schedRel(){
-        return $this->belongsTo('\App\Models\Schedule','id','subject_id');
+        return $this->hasMany('\App\Models\Schedule','groupID', 'groupID');
     }
 
 

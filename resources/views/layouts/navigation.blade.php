@@ -43,6 +43,11 @@
                                                 this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
+                            @if(auth()->user()->admin)
+                            <x-dropdown-link href="{{ route('admin') }}">
+                                {{ __('Admin') }}
+                            </x-dropdown-link>
+                            @endif
                         </form>
                     </x-slot>
                 </x-dropdown>

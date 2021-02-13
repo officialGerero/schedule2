@@ -8,9 +8,22 @@ use \App\Models\Schedule;
 
 class DashboardController extends Controller
 {
+
     public function lol(){
-        //$subjects = Subject::all();
+        $schedS = array();
+
+
         $subjects = Subject::with('subjectToUserRel','schedRel')->where('groupID', auth()->user()->getAuthIdentifier())->get();
-        return view('dashboard')->with('subjects', $subjects);
+        foreach($subjects as $subject){
+            foreach($subject->subjectToUserRel as $user) {
+                $user_name = $user->name;
+            }
+            foreach ($subject->schedRel as $sched){
+                if($sched->subject_id == $subject->id){
+                    $schedS[] = $subject->name_sub. " | ". $user_name." | ". $sched->day ." | ". $sched->time ;
+                }
+            }
+        }
+        return view('dashboard')->with('schedule', $schedS);
     }
 }
