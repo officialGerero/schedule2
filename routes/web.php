@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[Controllers\DashboardController::class, 'lol'])->middleware(['auth'])->name('dashboard');
 
-Route::view('admin','addTeacher')->middleware(['admin'])->name('admin');
+Route::view('admin','adminka')->middleware(['admin'])->name('admin');
 
 Route::post('submitTeacher',[Controllers\AddTeacherController::class,'addTeacher'])->middleware(['admin']);
 

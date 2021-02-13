@@ -1,0 +1,10 @@
+.form_item{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #d2d6dc;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+.full_form{
+display: none;
+}
