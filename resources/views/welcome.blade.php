@@ -35,7 +35,7 @@
                     @endif
                 </div>
             @endif
-            <p class="mt-2 text-gray-200">Hello page blyat</p>
+            <h2 class="mt-2 text-gray-200">Hello page blyat</h2>
 
         </div>
     </body>
