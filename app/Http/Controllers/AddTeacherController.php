@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddTeacherRequest;
+use App\Services\AddToDBService;
 use Illuminate\Http\Request;
 use \App\Models\Subject;
 
 class AddTeacherController extends Controller
 {
     //
-    function addTeacher(Request $req){
-        $sub = new Subject;
-        $sub->name_sub=$req->name_sub;
-        $sub->name_teacher=$req->name_teacher;
-        $sub->groupID=$req->groupID;
-        echo $sub->save();
+    private $addToDBService;
+
+
+    public function __construct( AddToDBService $addToDBService)
+    {
+        $this->addToDBService = $addToDBService;
+    }
+
+    function addTeacher(AddTeacherRequest $req)
+    {
+        $this->addToDBService->addTeacher($req);
 
     }
 }
