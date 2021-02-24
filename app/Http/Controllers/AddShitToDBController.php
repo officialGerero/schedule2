@@ -7,7 +7,7 @@ use App\Services\AddToDBService;
 use Illuminate\Http\Request;
 use \App\Models\Subject;
 
-class AddTeacherController extends Controller
+class AddShitToDBController extends Controller
 {
     //
     private $addToDBService;
