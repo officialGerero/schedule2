@@ -2,28 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\NoNameService;
+use App\Services\SubjectService;
 use Illuminate\Http\Request;
 use \App\Models\Subject;
 use \App\Models\Schedule;
 
 class DashboardController extends Controller
 {
+    private $subjectService;
+
+    public function __construct(SubjectService $subjectService)
+    {
+        $this->subjectService = $subjectService;
+    }
 
     public function lol(){
-        $schedS = array();
-
-
-        $subjects = Subject::with('subjectToUserRel','schedRel')->where('groupID', auth()->user()->getAuthIdentifier())->get();
-        foreach($subjects as $subject){
-            foreach($subject->subjectToUserRel as $user) {
-                $user_name = $user->name;
-            }
-            foreach ($subject->schedRel as $sched){
-                if($sched->subject_id == $subject->id){
-                    $schedS[] = $subject->name_sub. " | ". $user_name." | ". $sched->day ." | ". $sched->time ;
-                }
-            }
-        }
-        return view('dashboard')->with('schedule', $schedS);
+        return view('dashboard')->with('schedule', $this->subjectService->naniNoAPI());
     }
+
+    public function lolAPI(int $groupID){
+        return response()->json([$this->subjectService->naniAPI($groupID)],200);
+    }
+
+
 }

@@ -11,7 +11,9 @@
                 <div class="p-6 bg-white border-b border-gray-200">
                     You're logged in! <br>
                     @foreach($schedule as $line)
+                         {{-- @if(str_contains($line, 'Вівторок')) --}}
                         {{ $line }} <br>
+                        {{-- @endif --}}
                     @endforeach
                 </div>
             </div>

@@ -22,6 +22,6 @@ Route::get('/dashboard',[Controllers\DashboardController::class, 'lol'])->middle
 
 Route::view('admin','adminka')->middleware(['admin'])->name('admin');
 
-Route::post('submitTeacher',[Controllers\AddShitToDBController::class,'addTeacher'])->middleware(['admin']);
+Route::post('submitTeacher',[Controllers\AdminPageController::class,'addTeacher'])->middleware(['admin']);
 
 require __DIR__.'/auth.php';
