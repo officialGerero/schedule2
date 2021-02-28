@@ -8,3 +8,21 @@
 .full_form{
 display: none;
 }
+.tab-component {
+    height: 400px;
+    max-height: 400px;
+    overflow: hide;
+}
+
+.tab-contents {
+    height: 358px;
+    overflow: auto;
+}
+
+th, tr, td {
+    border: 1px solid lightgray;
+}
+td {
+    padding-left: 4px;
+    padding-right: 4px;
+}
