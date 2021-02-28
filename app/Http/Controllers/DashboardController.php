@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\NoNameService;
 use App\Services\SubjectService;
 use Illuminate\Http\Request;
 use \App\Models\Subject;
@@ -18,7 +17,7 @@ class DashboardController extends Controller
     }
 
     public function lol(){
-        return view('dashboard')->with('schedule', $this->subjectService->naniNoAPI());
+        return view('dashboard')->with('monday', $this->subjectService->naniNoAPI("Понеділок"))->with('tuesday', $this->subjectService->naniNoAPI("Вівторок"));
     }
 
     public function lolAPI(int $groupID){

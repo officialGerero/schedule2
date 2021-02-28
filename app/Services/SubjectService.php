@@ -9,28 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class SubjectService{
 
-    public function naniNoAPI(){
+    public function naniNoAPI($day){
         $subjects = Subject::with('subjectToUserRel','schedRel')->where('groupID', auth()->user()->getAuthIdentifier())->get();
-        return $this->nani($subjects);
+        return $this->nani($subjects,$day);
     }
 
-    public function naniAPI(int $groupID){
+    public function naniAPI(int $groupID,$day){
         $subjects = Subject::with('subjectToUserRel','schedRel')->where('groupID', $groupID)->get();
-        return $this->nani($subjects);
+        return $this->nani($subjects,$day);
 
     }
 
-    private function nani($subjects){
+    private function nani($subjects,$day){
         $schedS = array();
         foreach($subjects as $subject){
             foreach ($subject->schedRel as $sched){
-                if(($sched->subject_id == $subject->id) && (isset(Auth::user()->name))){
-                    $schedS[] = $subject->name_sub. " | ". Auth::user()->name." | ". $sched->day ." | ". $sched->time ;
-                }elseif ($sched->subject_id == $subject->id){
+                if(($sched->subject_id == $subject->id) && (isset(Auth::user()->name)) && ($sched->day == $day)){
+                    //$schedS[] = $subject->name_sub. " | ". Auth::user()->name." | ". $sched->day ." | ". $sched->time ;
+                    $schedS[] = array('time'=> $sched->time,'subject'=>$subject->name_sub,'teacher'=>$subject->name_teacher,'class'=>$sched->classroom);
+                }elseif (($sched->subject_id == $subject->id) && ($sched->day == $day)){
                     $schedS[] = $subject->name_sub. " | name | ". $sched->day ." | ". $sched->time ;
                 }
             }
         }
+        //dd($schedS);
         return $schedS;
     }
 
