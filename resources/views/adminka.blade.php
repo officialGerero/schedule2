@@ -31,7 +31,7 @@
                                 <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                             </svg>
                         </div>
-                        <div class="full_form">
+                        <div class="@if($errors->any()) block @else form_hidden @endif" >
                                  <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 @error('name_sub') border-red-500 @enderror" name="name_sub" placeholder="Subjects name"> <br><br>
                                  <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 @error('name_teacher') border-red-500 @enderror" name="name_teacher" placeholder="Teachers name"> <br><br>
                                  <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none text-gray-600 @error('groupID') border-red-500 @enderror" name="groupID" placeholder="Group id"> <br><br>

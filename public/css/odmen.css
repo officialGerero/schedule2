@@ -5,17 +5,26 @@
     border-radius: 5px;
     margin-bottom: 30px;
 }
-.full_form{
+.form_item1{
+    height: 50px;
+    width: 100%;
+    border: 1px solid #d2d6dc;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+.form_hidden{
 display: none;
 }
+.full_form1{
+    display: block;
+}
 .tab-component {
-    height: 400px;
-    max-height: 400px;
-    overflow: hide;
+    height: auto;
+    overflow: hidden;
 }
 
 .tab-contents {
-    height: 358px;
+    height: auto;
     overflow: auto;
 }
 
