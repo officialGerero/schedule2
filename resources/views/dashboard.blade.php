@@ -47,7 +47,7 @@
                                     @endforeach
                                 </table>
                             </li>
-                            <li class="hidden w-full" data-tab-content-index="1">{{-- TUESDAY TODO: Создать таблицу для списков существующих предметов, рассписаний, пользователей --}}
+                            <li class="hidden w-full" data-tab-content-index="1">
                                 <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
                                     <tr class="text-left border-b-2 border-gray-300">
                                         <th class="px-4 py-3">Час</th>
