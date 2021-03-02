@@ -37,17 +37,16 @@
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
+                            @if(auth()->user()->admin)
+                                <x-dropdown-link href="{{ route('users') }}">
+                                    {{ __('Admins page') }}
+                                </x-dropdown-link>
+                            @endif
                             <x-dropdown-link href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Logout') }}
                             </x-dropdown-link>
-                            @if(auth()->user()->admin)
-                            <x-dropdown-link href="{{ route('admin') }}">
-                                {{ __('Admin') }}
-                            </x-dropdown-link>
-                            @endif
                         </form>
                     </x-slot>
                 </x-dropdown>

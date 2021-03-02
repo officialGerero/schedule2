@@ -27,6 +27,8 @@ class AddTeacherRequest extends FormRequest
             'groupID.required' => 'A group ID is required',
             'groupID.numeric' => 'A group ID is supposed to be a number',
             'groupID.max:100' => 'A group ID can`t be bigger than 100',
+            'semester.required' => 'A semester is required',
+            'semester.numeric' => 'A semester is supposed to be a number',
         ];
     }
 
@@ -41,6 +43,7 @@ class AddTeacherRequest extends FormRequest
             'name_sub'=>'required|max:128|unique:subjects,name_sub',
             'name_teacher'=>'required|max:60',
             'groupID'=>'required|numeric|max:100',
+            'semester' => 'required|numeric',
         ];
     }
 }

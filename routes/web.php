@@ -20,8 +20,26 @@ Route::get('/', function () {
 
 Route::get('/dashboard',[Controllers\DashboardController::class, 'lol'])->middleware(['auth'])->name('dashboard');
 
-Route::view('admin','adminka')->middleware(['admin'])->name('admin');
+Route::middleware('admin')->group(function (){
 
-Route::post('submitTeacher',[Controllers\AdminPageController::class,'addTeacher'])->middleware(['admin']);
+    Route::view('/admin','addsubject')->name('admin');
+
+    Route::post('/submitTeacher',[Controllers\AdminPageController::class,'addTeacher']);
+    Route::put('/editTeacher/{id}',[Controllers\AdminPageController::class,'updateTeacher'])->name('edit.teacher');
+    Route::get('/admin.show/{id}',[Controllers\AdminPageController::class, 'getTeacher'])->name('edit.prepare');
+    Route::get('/admin.delete/{id}',[Controllers\AdminPageController::class, 'deleteTeacher'])->name('edit.delete');
+
+    Route::view('/user','adduser')->name('user.show');
+    Route::post('/user',[Controllers\AdminPageController::class, 'addUser'])->name('user.add');
+    Route::put('/user/{id}',[Controllers\AdminPageController::class, 'editUser'])->name('user.edit');
+    Route::get('/user.show/{id}',[Controllers\AdminPageController::class, 'getUser'])->name('user.get');
+    Route::get('/user.delete/{id}',[Controllers\AdminPageController::class, 'deleteUser'])->name('user.delete');
+
+    Route::get('/users', [Controllers\ListsPageController::class,'users'])->name('users');
+    Route::get('/subjects', [Controllers\ListsPageController::class,'subjects'])->name('subjects');
+});
+
+
+
 
 require __DIR__.'/auth.php';

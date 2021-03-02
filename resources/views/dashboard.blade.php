@@ -47,7 +47,7 @@
                                     @endforeach
                                 </table>
                             </li>
-                            <li class="hidden w-full" data-tab-content-index="1">{{-- TUESDAY--}}
+                            <li class="hidden w-full" data-tab-content-index="1">{{-- TUESDAY TODO: Создать таблицу для списков существующих предметов, рассписаний, пользователей --}}
                                 <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
                                     <tr class="text-left border-b-2 border-gray-300">
                                         <th class="px-4 py-3">Час</th>
@@ -66,13 +66,58 @@
                                 </table>
                             </li>
                             <li class="hidden w-full" data-tab-content-index="2">
-                                TEXT3
+                                <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
+                                    <tr class="text-left border-b-2 border-gray-300">
+                                        <th class="px-4 py-3">Час</th>
+                                        <th class="px-4 py-3">Предмет</th>
+                                        <th class="px-4 py-3">Викладач</th>
+                                        <th class="px-4 py-3">Аудиторія</th>
+                                    </tr>
+                                    @foreach($wednesday as $arr1)
+                                        <tr class="bg-gray-100 border-b border-gray-200">
+                                            <td class="px-4 py-3">{{$arr1["time"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["subject"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["teacher"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["class"]}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </li>
                             <li class="hidden w-full" data-tab-content-index="3">
-                                tab content 4
+                                <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
+                                    <tr class="text-left border-b-2 border-gray-300">
+                                        <th class="px-4 py-3">Час</th>
+                                        <th class="px-4 py-3">Предмет</th>
+                                        <th class="px-4 py-3">Викладач</th>
+                                        <th class="px-4 py-3">Аудиторія</th>
+                                    </tr>
+                                    @foreach($thursday as $arr1)
+                                        <tr class="bg-gray-100 border-b border-gray-200">
+                                            <td class="px-4 py-3">{{$arr1["time"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["subject"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["teacher"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["class"]}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </li>
                             <li class="hidden w-full" data-tab-content-index="4">
-                                tab content 5
+                                <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
+                                    <tr class="text-left border-b-2 border-gray-300">
+                                        <th class="px-4 py-3">Час</th>
+                                        <th class="px-4 py-3">Предмет</th>
+                                        <th class="px-4 py-3">Викладач</th>
+                                        <th class="px-4 py-3">Аудиторія</th>
+                                    </tr>
+                                    @foreach($friday as $arr1)
+                                        <tr class="bg-gray-100 border-b border-gray-200">
+                                            <td class="px-4 py-3">{{$arr1["time"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["subject"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["teacher"]}}</td>
+                                            <td class="px-4 py-3">{{$arr1["class"]}}</td>
+                                        </tr>
+                                    @endforeach
+                                </table>
                             </li>
                         </ul>
                     </div>

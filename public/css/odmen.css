@@ -28,9 +28,6 @@ display: none;
     overflow: auto;
 }
 
-th, tr, td {
-    border: 1px solid lightgray;
-}
 td {
     padding-left: 4px;
     padding-right: 4px;

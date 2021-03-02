@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/api/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('schedule/{id}', [Controllers\DashboardController::class, 'lolAPI']);
+Route::get('schedule/{id}_{day}', [Controllers\DashboardController::class, 'lolAPI']);
