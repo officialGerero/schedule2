@@ -47,7 +47,7 @@
                             <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('time') border-red-500 @enderror" name="time" placeholder="Time" value="{{$what->time}}"> <br><br>
                             <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('subject_id') border-red-500 @enderror" name="subject_id" placeholder="Subject id" value="{{$what->subject_id}}"> <br><br>
                             <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('groupID') border-red-500 @enderror" name="groupID" placeholder="Group id" value="{{$what->groupID}}"> <br><br>
-                            <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №" value="{{$what->classroom}}"> <br><br>
+                            <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №" value="{{$what->classroom}}"> <br><br>
                             <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Update</button>
                         </form>
                     @else
@@ -57,19 +57,19 @@
                             </div>
                             <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('day') border-red-500 @enderror" name="day" placeholder="Day"> <br><br>
                             <select name="time" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('time') border-red-500 @enderror">
-                                    <option value="8:00-9:20">8:00-9:20</option>
-                                    <option value="9:30-10:50">9:30-10:50</option>
-                                    <option value="11:00-12:20">11:00-12:20</option>
-                                    <option value="12:30-13:50">12:30-13:50</option>
-                                    <option value="14:00-15:20">14:00-15:20</option>
-                                    <option value="15:30-16:50">15:30-16:50</option>
-                                    <option value="17:00-18:20">17:00-18:20</option>
-                                    <option value="18:30-19:50">18:30-19:50</option>
+                                    <option value="8:00-9:20">8:00-9:20 - 1</option>
+                                    <option value="9:30-10:50">9:30-10:50 - 2</option>
+                                    <option value="11:00-12:20">11:00-12:20 - 3</option>
+                                    <option value="12:30-13:50">12:30-13:50 - 4</option>
+                                    <option value="14:00-15:20">14:00-15:20 - 5</option>
+                                    <option value="15:30-16:50">15:30-16:50 - 6</option>
+                                    <option value="17:00-18:20">17:00-18:20 - 7</option>
+                                    <option value="18:30-19:50">18:30-19:50 - 8</option>
                             </select><br><br>
                             <input type="hidden" value="{{request()->id}}" name="id">
                             <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('subject_id') border-red-500 @enderror" name="subject_id" placeholder="Subject id"> <br><br>
                             <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('groupID') border-red-500 @enderror" name="groupID" placeholder="Group id"> <br><br>
-                            <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №"> <br><br>
+                            <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №"> <br><br>
                             <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submit</button>
                         </form>
                     @endisset

@@ -19,6 +19,7 @@ class Subject extends Model
         'name_sub',
         'name_teacher',
         'groupID',
+        'semester'
     ];
 
     public function subjectToUserRel(){

@@ -42,6 +42,8 @@ class SubjectService{
             }
         }
         //dd($schedS);
+        array_multisort(array_column($schedS, 'time'), SORT_NATURAL, $schedS);
+
         return $schedS;
     }
 
