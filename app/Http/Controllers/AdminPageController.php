@@ -38,7 +38,7 @@ class AdminPageController extends Controller
         return redirect()->route('subjects')->with('success','Teacher was added successfully');
     }
 
-    public function updateTeacher(AddTeacherRequest $req, int $id)
+    public function updateTeacher(Request $req, int $id)
     {
         $this->subjectService->updateTeacher($req, $id);
         return redirect()->route('subjects')->with('success','Teacher was updated successfully');
@@ -61,8 +61,15 @@ class AdminPageController extends Controller
         return view('adduser')->with('what',$this->userService->getUserById($id));
     }
     public function deleteUser(int $id){
-        $this->userService->deleteUser($id);
-        return redirect()->route('users')->with('success','User was deleted successfully');
+        if(auth()->user()->id == $id ){
+            return redirect()->route('users')->withErrors(['lulw'=>'You cant delete yourself']);
+        }elseif($this->userService->isAdmin($id)){
+            return redirect()->route('users')->withErrors(['lulw'=>'You cant delete an admin']);
+        }else{
+            $this->userService->deleteUser($id);
+            return redirect()->route('users')->with('success','User was deleted successfully');
+        }
+
     }
 
     public function addSchedule(AddScheduleRequest $req){

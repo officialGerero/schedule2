@@ -10,6 +10,13 @@ use Illuminate\Support\Facades\Hash;
 
 class UserService{
 
+    public function isAdmin(int $id){
+        $user = User::find($id);
+        if($user->admin){
+            return true;
+        }else return false;
+    }
+
     public function getUsers(){
         return User::paginate(10);
     }
