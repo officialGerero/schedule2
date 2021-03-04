@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserService{
 
     public function getUsers(){
-        return User::all();
+        return User::paginate(10);
     }
     public function getUserById(int $id){
         return User::find($id);

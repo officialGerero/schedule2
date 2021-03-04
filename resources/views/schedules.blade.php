@@ -13,7 +13,7 @@
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="max-w-max-content bg-white overflow-hidden shadow-md sm:rounded-lg mb-1">
-                <a href="{{route('user.show')}}" class="bg-green-400 flex justify-center items-center w-full text-white px-4 py-1 rounded-md focus:outline-none">Add</a>
+                <a href="{{route('schedule.show',['id'=>request()->id])}}" class="bg-green-400 flex justify-center items-center w-full text-white px-4 py-1 rounded-md focus:outline-none">Add</a>
             </div>
             <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -38,22 +38,28 @@
                     @endif
                     <table class="rounded-t-lg w-full mx-auto bg-gray-200">
                         <tr class="text-left rounded-t-lg border-b-2 border-gray-300">
-                            <th class="px-4 py-3">Id</th>
-                            <th class="px-4 py-3">Ім'я</th>
-                            <th class="px-4 py-3">Пошта</th>
+                            <th class="px-4 py-3">№</th>
+                            <th class="px-4 py-3">День</th>
+                            <th class="px-4 py-3">Час</th>
+                            <th class="px-4 py-3">№ предмету</th>
+                            <th class="px-4 py-3">№ групи</th>
+                            <th class="px-4 py-3">№ ауд.</th>
                             <th class="px-4 py-3 border-l-2">Дії</th>
                         </tr>
                         @foreach($items as $item)
                             <tr class="bg-cool-gray-100 border-b border-gray-200">
                                 <td class="px-4 py-3">{{$item["id"]}}</td>
-                                <td class="px-4 py-3">{{$item["name"]}}</td>
-                                <td class="px-4 py-3">{{$item["email"]}}</td>
-                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('user.get', ['id'=>$item["id"]])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('user.delete', ['id'=>$item["id"]])}}">Видалити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedules', ['id'=>$item["id"]])}}">Розклад</a></td>
+                                <td class="px-4 py-3">{{$item["day"]}}</td>
+                                <td class="px-4 py-3">{{$item["time"]}}</td>
+                                <td class="px-4 py-3">{{$item["subject_id"]}}</td>
+                                <td class="px-4 py-3">{{$item["groupID"]}}</td>
+                                <td class="px-4 py-3">{{$item["classroom"]}}</td>
+                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.get', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
                             </tr>
                         @endforeach
                     </table>
                         <br>
-                        {{$items->links()}}
+                    {{$items->links()}}
                 </div>
             </div>
         </div>

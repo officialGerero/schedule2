@@ -3,23 +3,36 @@
 namespace App\Http\Controllers;
 
 
+use App\Services\ScheduleService;
 use App\Services\SubjectService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
 
 class ListsPageController extends Controller
 {
+    private $subjectService;
+
     private $userService;
-    public function __construct(UserService $userService)
+
+    private $scheduleService;
+
+
+    public function __construct(SubjectService $subjectService, UserService $userService, ScheduleService $scheduleService)
     {
+        $this->subjectService = $subjectService;
         $this->userService = $userService;
+        $this->scheduleService = $scheduleService;
     }
 
     public function users(){
         return view('usersList')->with('items',$this->userService->getUsers());
     }
 
-    public function subjects(SubjectService $subjectService){
-        return view('subjects')->with('items', $subjectService->showAll());
+    public function subjects(){
+        return view('subjects')->with('items', $this->subjectService->showAll());
+    }
+
+    public function schedules(int $id){
+        return view('schedules')->with('items', $this->scheduleService->showSchedules($id));
     }
 }

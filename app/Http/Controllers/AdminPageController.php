@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddScheduleRequest;
 use App\Http\Requests\AddTeacherRequest;
 use App\Http\Requests\AddUserRequest;
+use App\Services\ScheduleService;
 use App\Services\SubjectService;
 use App\Services\UserService;
 use Illuminate\Http\Request;
@@ -16,11 +18,14 @@ class AdminPageController extends Controller
 
     private $userService;
 
+    private $scheduleService;
 
-    public function __construct(SubjectService $subjectService, UserService $userService)
+
+    public function __construct(SubjectService $subjectService, UserService $userService, ScheduleService $scheduleService)
     {
         $this->subjectService = $subjectService;
         $this->userService = $userService;
+        $this->scheduleService = $scheduleService;
     }
 
     public function getTeacher(int $id){
@@ -58,5 +63,24 @@ class AdminPageController extends Controller
     public function deleteUser(int $id){
         $this->userService->deleteUser($id);
         return redirect()->route('users')->with('success','User was deleted successfully');
+    }
+
+    public function addSchedule(AddScheduleRequest $req){
+        $this->scheduleService->addUser($req);
+        return redirect()->route('schedules', ['id'=>$req->id])->with('success','Schedule was added successfully');
+    }
+
+    public function getSchedule(int $id){
+        return view('addschedule')->with('what',$this->scheduleService->getScheduleById($id));
+    }
+
+    public function editSchedule(Request $req, int $id){
+        $this->scheduleService->editSchedule($id,$req);
+        return redirect()->route('schedules', ['id'=>$req->id])->with('success','Schedule was updated successfully');
+    }
+
+    public function deleteSchedule(int $id, int $returnId){
+        $this->scheduleService->deleteSchedule($id);
+        return redirect()->route('schedules', ['id'=>$returnId])->with('success','Schedule was deleted successfully');
     }
 }

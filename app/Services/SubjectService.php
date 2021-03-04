@@ -14,7 +14,7 @@ class SubjectService{
     }
 
     public function showAll(){
-        return Subject::all();
+        return Subject::paginate(10);
     }
 
     public function naniNoAPI($day){

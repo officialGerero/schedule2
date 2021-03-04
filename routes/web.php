@@ -35,8 +35,16 @@ Route::middleware('admin')->group(function (){
     Route::get('/user.show/{id}',[Controllers\AdminPageController::class, 'getUser'])->name('user.get');
     Route::get('/user.delete/{id}',[Controllers\AdminPageController::class, 'deleteUser'])->name('user.delete');
 
+    Route::view('/schedule/{id}','addschedule')->name('schedule.show');// adding page
+    Route::post('/schedule',[Controllers\AdminPageController::class, 'addSchedule'])->name('schedule.add'); // form add
+    Route::put('/schedule/{id}',[Controllers\AdminPageController::class, 'editSchedule'])->name('schedule.edit');//form edit
+    Route::get('/schedule.show/{id}',[Controllers\AdminPageController::class, 'getSchedule'])->name('schedule.get');//put data into form edit
+    Route::get('/schedule.delete/{id}_{returnId}',[Controllers\AdminPageController::class, 'deleteSchedule'])->name('schedule.delete');// delete user
+
+
     Route::get('/users', [Controllers\ListsPageController::class,'users'])->name('users');
     Route::get('/subjects', [Controllers\ListsPageController::class,'subjects'])->name('subjects');
+    Route::get('/schedules/{id}', [Controllers\ListsPageController::class,'schedules'])->name('schedules');
 });
 
 
