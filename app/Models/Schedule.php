@@ -18,7 +18,20 @@ class Schedule extends Model
         'day',
         'time',
         'subject_id',
+        'group_ID',
     ];
+
+    public function scopeIdAsc($query){
+        return $query->orderBy('id');
+    }
+
+    public function user(){
+        return $this->belongsTo('\App\Models\User','group_ID','id');
+    }
+
+    public function subject(){
+        return $this->belongsTo('\App\Models\Subject','subject_id','id');
+    }
 
 
 }

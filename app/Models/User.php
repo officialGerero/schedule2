@@ -41,4 +41,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function schedule(){
+        return $this->hasMany('\App\Models\Schedule','group_ID','id');
+    }
+
+    public function get(){
+        return $this->schedule()->get();
+    }
+
+    public function scopeIdAsc($query){
+        return $query->orderBy('id');
+    }
 }

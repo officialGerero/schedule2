@@ -29,7 +29,8 @@
                             </li>
                         </ul>
                         <ul class="flex tab-contents">
-                            <li class="hidden w-full" data-tab-content-index="0">
+                            @foreach($days as $day)
+                            <li class="hidden w-full" data-tab-content-index="{{$loop->index}}">
                                 <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
                                     <tr class="text-left border-b-2 border-gray-300">
                                         <th class="px-4 py-3">Час</th>
@@ -37,16 +38,19 @@
                                         <th class="px-4 py-3">Викладач</th>
                                         <th class="px-4 py-3">Аудиторія</th>
                                     </tr>
-                                     @foreach($monday as $arr1)
+                                        @foreach($day as $subj)
                                         <tr class="bg-gray-100 border-b border-gray-200">
-                                            <td class="px-4 py-3">{{$arr1["time"]}}</td>
-                                            <td class="px-4 py-3">{{$arr1["subject"]}}</td>
-                                            <td class="px-4 py-3">{{$arr1["teacher"]}}</td>
-                                            <td class="px-4 py-3">{{$arr1["class"]}}</td>
+                                            <td class="px-4 py-3">{{$subj["time"]}}</td>
+                                            <td class="px-4 py-3">{{$subj["subject"]}}</td>
+                                            <td class="px-4 py-3">{{$subj["teacher"]}}</td>
+                                            <td class="px-4 py-3">{{$subj["class"]}}</td>
                                         </tr>
-                                    @endforeach
+                                        @endforeach
                                 </table>
                             </li>
+                            @endforeach
+                            {{--
+
                             <li class="hidden w-full" data-tab-content-index="1">
                                 <table class="rounded-t-lg w-full mx-auto bg-gray-200 text-gray-800">
                                     <tr class="text-left border-b-2 border-gray-300">
@@ -119,6 +123,7 @@
                                     @endforeach
                                 </table>
                             </li>
+                            --}}
                         </ul>
                     </div>
                 </div>

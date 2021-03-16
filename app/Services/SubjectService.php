@@ -5,47 +5,52 @@ namespace App\Services;
 
 use App\Http\Requests\AddTeacherRequest;
 use App\Models\Subject;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
+define("DAYS",["Понеділок","Вівторок","Середа","Четвер","П'ятниця"]);
+
 class SubjectService{
+
+
 
     public function showById(int $id){
         return Subject::find($id);
     }
 
     public function showAll(){
-        return Subject::paginate(10);
+        return Subject::IdAsc()->paginate(10);
     }
 
-    public function naniNoAPI($day){
-            $subjects = Subject::with('subjectToUserRel','schedRel')->where('groupID', auth()->user()->getAuthIdentifier())->get();
-            return $this->nani($subjects,$day);
+    public function getSubjects(){
+        $subjects = auth()->user()->get()->groupBy('day');
+        return $this->sortSubjects($subjects);
     }
 
-    public function naniAPI(int $groupID,$day){
-        if(isset($day) && is_string($day)) {
-            $subjects = Subject::with('subjectToUserRel', 'schedRel')->where('groupID', $groupID)->get();
-            return $this->nani($subjects, $day);
-        }
-        return response()->json(['error' =>'You haven`t specified the day']);
+    public function getSubjectsAPI(int $groupID){
+                return response()->json(['error' =>'You haven`t specified the day']);
     }
 
-    private function nani($subjects,$day){
+    private function sortSubjects($subjects): array
+    {
         $schedS = array();
-        foreach($subjects as $subject){
-            foreach ($subject->schedRel as $sched){
-                if(($sched->subject_id == $subject->id) && (isset(Auth::user()->name)) && ($sched->day == $day)){
-                    $schedS[] = array('time'=> $sched->time,'subject'=>$subject->name_sub,'teacher'=>$subject->name_teacher,'class'=>$sched->classroom);
-                }elseif (($sched->subject_id == $subject->id) && ($sched->day == $day)){
-                    $schedS[] = array('time'=> $sched->time,'subject'=>$subject->name_sub,'teacher'=>$subject->name_teacher,'class'=>$sched->classroom);
-                }
+        foreach($subjects as $day => $value) {
+            $sched = array();
+            foreach ($value as $subject) {
+                $subj = $subject->subject()->get();
+                $sched[] = ['time' => $subject['time'], 'subject' => $subj[0]->name_sub, 'teacher' => $subj[0]->name_teacher, 'class' => $subject['classroom']];
             }
+            array_multisort(array_column($sched,'time'),SORT_NATURAL, $sched);
+            $schedS[$day] = $sched;
         }
-        //dd($schedS);
-        array_multisort(array_column($schedS, 'time'), SORT_NATURAL, $schedS);
+        $days = array_flip(DAYS);
+        uksort($schedS,
+            function($a, $b) use ($days) { return $days[$a] - $days[$b]; });
+
 
         return $schedS;
     }
+
 
     public function addTeacher(AddTeacherRequest $req){
         $sub = new Subject;

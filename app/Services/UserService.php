@@ -18,7 +18,7 @@ class UserService{
     }
 
     public function getUsers(){
-        return User::paginate(10);
+        return User::IdAsc()->paginate(10);
     }
     public function getUserById(int $id){
         return User::find($id);

@@ -16,16 +16,12 @@ class DashboardController extends Controller
         $this->subjectService = $subjectService;
     }
 
-    public function lol(){
-        return view('dashboard')->with('monday', $this->subjectService->naniNoAPI("Понеділок"))
-            ->with('tuesday', $this->subjectService->naniNoAPI("Вівторок"))
-            ->with('wednesday', $this->subjectService->naniNoAPI("Середа"))
-            ->with('thursday', $this->subjectService->naniNoAPI("Четвер"))
-            ->with('friday', $this->subjectService->naniNoAPI("П'ятниця"));
+    public function getSubjects(){
+        return view('dashboard')->with('days', $this->subjectService->getSubjects());
     }
 
-    public function lolAPI(int $groupID,string $day){
-        return response()->json([$this->subjectService->naniAPI($groupID, $day)],200);
+    public function getSubjectsAPI(int $groupID){
+        return response()->json([$this->subjectService->getSubjectsAPI($groupID)],200);
     }
 
 

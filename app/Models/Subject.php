@@ -22,11 +22,14 @@ class Subject extends Model
         'semester'
     ];
 
-    public function subjectToUserRel(){
-        return $this->hasMany('\App\Models\User','id','groupID');
+//    public function subjectToUserRel(){
+//        return $this->hasMany('\App\Models\User','id','groupID');
+//    }
+    public function schedules(){
+        return $this->hasMany('\App\Models\Schedule','subject_id', 'id');
     }
-    public function schedRel(){
-        return $this->hasMany('\App\Models\Schedule','groupID', 'groupID');
+    public function scopeIdAsc($query){
+        return $query->orderBy('id');
     }
 
 

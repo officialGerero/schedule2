@@ -14,7 +14,7 @@ class ScheduleService{
 
     public function showSchedules(int $id)
     {
-        return Schedule::where('groupID',$id)->paginate(10);
+        return Schedule::where('group_ID',$id)->IdAsc()->paginate(10);
     }
 
     public function addUser(AddScheduleRequest $req)
@@ -23,7 +23,7 @@ class ScheduleService{
         $schedule->day = $req->day;
         $schedule->time = $req->time;
         $schedule->subject_id = $req->subject_id;
-        $schedule->groupID = $req->groupID;
+        $schedule->group_ID = $req->group_ID;
         $schedule->classroom = $req->classroom;
         $schedule->save();
     }
@@ -39,7 +39,7 @@ class ScheduleService{
         $schedule->day = $req->day;
         $schedule->time = $req->time;
         $schedule->subject_id = $req->subject_id;
-        $schedule->groupID = $req->groupID;
+        $schedule->group_ID = $req->group_ID;
         $schedule->classroom = $req->classroom;
         $schedule->save();
     }
