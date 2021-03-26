@@ -26,10 +26,10 @@ class Schedule extends Model
     }
 
     public function user(){
-        return $this->belongsTo('\App\Models\User','group_ID','id');
+        return $this->belongsTo('\App\Models\User','group_id','id');
     }
 
-    public function subject(){
+    public function getSubject(){
         return $this->belongsTo('\App\Models\Subject','subject_id','id');
     }
 

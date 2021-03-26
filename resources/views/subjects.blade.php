@@ -50,7 +50,7 @@
                                 <td class="px-4 py-3">{{$item["id"]}}</td>
                                 <td class="px-4 py-3">{{$item["name_sub"]}}</td>
                                 <td class="px-4 py-3">{{$item["name_teacher"]}}</td>
-                                <td class="px-4 py-3">{{$item["groupID"]}}</td>
+                                <td class="px-4 py-3">{{$item["group_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["semester"]}}</td>
                                 <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('edit.prepare', ['id'=>$item["id"]])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('edit.delete', ['id'=>$item["id"]])}}">Видалити</a></td>
                             </tr>

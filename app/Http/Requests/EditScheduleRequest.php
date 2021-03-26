@@ -24,9 +24,9 @@ class EditScheduleRequest extends FormRequest
             'subject_id.required'=>'Subject id is required',
             'subject_id.numeric'=>'Subject id must be a number',
             'subject_id.exists:subjects,id'=>'Subject with this id doesn`t exist',
-            'group_ID.required'=>'Group id is required',
-            'group_ID.numeric'=>'Group id must be a number',
-            'group_ID.exists:users,id'=>'Group with this id doesn`t exist',
+            'group_id.required'=>'Group id is required',
+            'group_id.numeric'=>'Group id must be a number',
+            'group_id.exists:users,id'=>'Group with this id doesn`t exist',
             'classroom.required'=>'You haven`t specified classrooms number',
         ];
     }
@@ -42,7 +42,7 @@ class EditScheduleRequest extends FormRequest
             'day'=>'required',
             'time'=>'required',
             'subject_id'=>'required|numeric|exists:subjects,id',
-            'group_ID'=>'required|numeric|exists:users,id',
+            'group_id'=>'required|numeric|exists:users,id',
             'classroom'=>'required',
         ];
     }

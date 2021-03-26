@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\AddTeacherRequest;
-use App\Http\Requests\EditTeacherRequest;
+use App\Http\Requests\AddSubjectRequest;
+use App\Http\Requests\EditSubjectRequest;
 use App\Services\SubjectService;
 use Illuminate\Http\Request;
 
@@ -20,13 +20,13 @@ class SubjectController extends Controller{
         return view('addsubject')->with('what',$this->subjectService->showById($id));
     }
 
-    public function addSubject(AddTeacherRequest $req)
+    public function addSubject(AddSubjectRequest $req)
     {
         $this->subjectService->addSubject($req);
         return redirect()->route('subjects')->with('success','Teacher was added successfully');
     }
 
-    public function updateSubject(EditTeacherRequest $req, int $id)
+    public function updateSubject(EditSubjectRequest $req, int $id)
     {
         $this->subjectService->updateSubject($req, $id);
         return redirect()->route('subjects')->with('success','Teacher was updated successfully');

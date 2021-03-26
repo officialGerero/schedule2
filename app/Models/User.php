@@ -43,11 +43,11 @@ class User extends Authenticatable
     ];
 
     public function schedule(){
-        return $this->hasMany('\App\Models\Schedule','group_ID','id');
+        return $this->hasMany('\App\Models\Schedule','group_id','id');
     }
 
     public function getSchedules(){
-        return $this->schedule()->get();
+        return $this->schedule()->with('getSubject')->orderBy('day')->orderBy('time')->get();
     }
 
     public function scopeIdAsc($query){

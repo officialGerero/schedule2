@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard',[Controllers\DashboardController::class, 'getSubjects'])->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard',[Controllers\DashboardController::class, 'getSchedules'])->middleware(['auth'])->name('dashboard');
 
 Route::middleware('admin')->group(function (){
 

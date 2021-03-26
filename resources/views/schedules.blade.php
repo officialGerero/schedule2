@@ -49,10 +49,10 @@
                         @foreach($items as $item)
                             <tr class="bg-cool-gray-100 border-b border-gray-200">
                                 <td class="px-4 py-3">{{$item["id"]}}</td>
-                                <td class="px-4 py-3">{{$item["day"]}}</td>
-                                <td class="px-4 py-3">{{$item["time"]}}</td>
+                                <td class="px-4 py-3">{{__('day.'.$item["day"])}}</td>
+                                <td class="px-4 py-3">{{__('time.'.$item["time"])}}</td>
                                 <td class="px-4 py-3">{{$item["subject_id"]}}</td>
-                                <td class="px-4 py-3">{{$item["group_ID"]}}</td>
+                                <td class="px-4 py-3">{{$item["group_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["classroom"]}}</td>
                                 <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.get', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
                             </tr>

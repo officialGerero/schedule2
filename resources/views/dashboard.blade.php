@@ -12,21 +12,11 @@
                     You're logged in! <br>
                     <div class="container border rounded tab-component bg-white w-full h-auto">
                         <ul class="overflow-auto flex border-b tab-buttons sm:overflow-hidden">
-                            <li class="mr-1">
-                                <button data-tab-index="0" class="tab-item bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Понеділок</button>
-                            </li>
-                            <li class="mr-1">
-                                <button data-tab-index="1" class="tab-item bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Вівторок</button>
-                            </li>
-                            <li class="mr-1">
-                                <button data-tab-index="2" class="tab-item bg-white inline-block py-2 px-4 text-blue-500 font-semibold active">Середа</button>
-                            </li>
-                            <li class="mr-1">
-                                <button data-tab-index="3" class="tab-item bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">Четвер</button>
-                            </li>
-                            <li class="mr-1">
-                                <button data-tab-index="4" class="tab-item bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">П'ятниця</button>
-                            </li>
+                            @foreach($days as $day)
+                                <li class="mr-0">
+                                    <button data-tab-index="{{$loop->index}}" class="tab-item border-r bg-white inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold">{{__('day.'.($loop->index+1))}}</button>
+                                </li>
+                            @endforeach
                         </ul>
                         <ul class="flex tab-contents">
                             @foreach($days as $day)
@@ -39,11 +29,12 @@
                                         <th class="px-4 py-3">Аудиторія</th>
                                     </tr>
                                         @foreach($day as $subj)
+
                                         <tr class="bg-gray-100 border-b border-gray-200">
-                                            <td class="px-4 py-3">{{$subj["time"]}}</td>
-                                            <td class="px-4 py-3">{{$subj["subject"]}}</td>
-                                            <td class="px-4 py-3">{{$subj["teacher"]}}</td>
-                                            <td class="px-4 py-3">{{$subj["class"]}}</td>
+                                            <td class="px-4 py-3">{{__('time.'.$subj["time"])}}</td>
+                                            <td class="px-4 py-3">{{$subj['get_subject']["name_sub"]}}</td>
+                                            <td class="px-4 py-3">{{$subj['get_subject']["name_teacher"]}}</td>
+                                            <td class="px-4 py-3">{{$subj["classroom"]}}</td>
                                         </tr>
                                         @endforeach
                                 </table>
@@ -61,7 +52,7 @@
             'border-l','border-t','border-r','rounded-t','text-blue-700','font-semibold', 'active'
         ];
         const inactiveTabClasses = [
-            'text-blue-500','hover:text-blue-800','font-semibold'
+            'text-blue-500','hover:text-blue-800','font-semibold','border-r'
         ];
 
         function toggleTabs(activeIndex) {

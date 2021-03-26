@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AddTeacherRequest extends FormRequest
+class AddSubjectRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class AddTeacherRequest extends FormRequest
             'name_sub.unique:subjects,name_sub' => 'A subjects with the same name already exists',
             'name_teacher.required' => 'A teachers name is required',
             'name_teacher.max:60' => 'A teachers name can`t be longer than 60 characters',
-            'groupID.required' => 'A group ID is required',
-            'groupID.numeric' => 'A group ID is supposed to be a number',
-            'groupID.max:100' => 'A group ID can`t be bigger than 100',
+            'group_id.required' => 'A group Id is required',
+            'group_id.numeric' => 'A group Id is supposed to be a number',
+            'group_id.max:100' => 'A group Id can`t be bigger than 100',
             'semester.required' => 'A semester is required',
             'semester.numeric' => 'A semester is supposed to be a number',
         ];
@@ -42,7 +42,7 @@ class AddTeacherRequest extends FormRequest
         return [
             'name_sub'=>'required|max:128|unique:subjects,name_sub',
             'name_teacher'=>'required|max:60',
-            'groupID'=>'required|numeric|max:100',
+            'group_id'=>'required|numeric|max:100',
             'semester' => 'required|numeric',
         ];
     }
