@@ -46,7 +46,7 @@ class User extends Authenticatable
         return $this->hasMany('\App\Models\Schedule','group_ID','id');
     }
 
-    public function get(){
+    public function getSchedules(){
         return $this->schedule()->get();
     }
 

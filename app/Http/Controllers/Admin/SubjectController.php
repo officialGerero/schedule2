@@ -16,24 +16,24 @@ class SubjectController extends Controller{
         $this->subjectService=$subjectService;
     }
 
-    public function getTeacher(int $id){
+    public function getSubject(int $id){
         return view('addsubject')->with('what',$this->subjectService->showById($id));
     }
 
-    public function addTeacher(AddTeacherRequest $req)
+    public function addSubject(AddTeacherRequest $req)
     {
-        $this->subjectService->addTeacher($req);
+        $this->subjectService->addSubject($req);
         return redirect()->route('subjects')->with('success','Teacher was added successfully');
     }
 
-    public function updateTeacher(EditTeacherRequest $req, int $id)
+    public function updateSubject(EditTeacherRequest $req, int $id)
     {
-        $this->subjectService->updateTeacher($req, $id);
+        $this->subjectService->updateSubject($req, $id);
         return redirect()->route('subjects')->with('success','Teacher was updated successfully');
     }
 
-    public function deleteTeacher(int $id){
-        $this->subjectService->deleteTeacher($id);
+    public function deleteSubject(int $id){
+        $this->subjectService->deleteSubject($id);
         return redirect()->route('subjects')->with('success','Teacher was deleted successfully');
     }
 

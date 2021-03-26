@@ -17,7 +17,7 @@ class ScheduleController extends Controller{
     }
 
     public function addSchedule(AddScheduleRequest $req){
-        $this->scheduleService->addUser($req);
+        $this->scheduleService->addSchedule($req);
         return redirect()->route('schedules', ['id'=>$req->id])->with('success','Schedule was added successfully');
     }
 

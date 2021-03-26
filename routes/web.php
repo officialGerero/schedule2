@@ -24,10 +24,10 @@ Route::middleware('admin')->group(function (){
 
     Route::view('/admin','addsubject')->name('admin');
 
-    Route::post('/submitTeacher',[Controllers\Admin\SubjectController::class,'addTeacher']);
-    Route::put('/editTeacher/{id}',[Controllers\Admin\SubjectController::class,'updateTeacher'])->name('edit.teacher');
-    Route::get('/admin.show/{id}',[Controllers\Admin\SubjectController::class, 'getTeacher'])->name('edit.prepare');
-    Route::get('/admin.delete/{id}',[Controllers\Admin\SubjectController::class, 'deleteTeacher'])->name('edit.delete');
+    Route::post('/submitTeacher',[Controllers\Admin\SubjectController::class,'addSubject']);
+    Route::put('/editTeacher/{id}',[Controllers\Admin\SubjectController::class,'updateSubject'])->name('edit.teacher');
+    Route::get('/admin.show/{id}',[Controllers\Admin\SubjectController::class, 'getSubject'])->name('edit.prepare');
+    Route::get('/admin.delete/{id}',[Controllers\Admin\SubjectController::class, 'deleteSubject'])->name('edit.delete');
 
     Route::view('/user','adduser')->name('user.show');
     Route::post('/user',[Controllers\Admin\UserController::class, 'addUser'])->name('user.add');

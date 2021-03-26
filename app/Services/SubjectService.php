@@ -5,10 +5,8 @@ namespace App\Services;
 
 use App\Http\Requests\AddTeacherRequest;
 use App\Models\Subject;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
-define("DAYS",["Понеділок","Вівторок","Середа","Четвер","П'ятниця"]);
+const DAYS = ["Понеділок","Вівторок","Середа","Четвер","П'ятниця"];
 
 class SubjectService{
 
@@ -23,7 +21,7 @@ class SubjectService{
     }
 
     public function getSubjects(){
-        $subjects = auth()->user()->get()->groupBy('day');
+        $subjects = auth()->user()->getSchedules()->groupBy('day');
         return $this->sortSubjects($subjects);
     }
 
@@ -52,8 +50,12 @@ class SubjectService{
     }
 
 
-    public function addTeacher(AddTeacherRequest $req){
+    public function addSubject(AddTeacherRequest $req){
         $sub = new Subject;
+        $this->saveSubject($sub,$req);
+    }
+
+    public function saveSubject(Subject $sub, $req){
         $sub->name_sub=$req->name_sub;
         $sub->name_teacher=$req->name_teacher;
         $sub->groupID=$req->groupID;
@@ -61,17 +63,13 @@ class SubjectService{
         $sub->save();
     }
 
-    public function updateTeacher($req, $id)
+    public function updateSubject($req, $id)
     {
         $sub = Subject::find($id);
-        $sub->name_sub=$req->name_sub;
-        $sub->name_teacher=$req->name_teacher;
-        $sub->groupID=$req->groupID;
-        $sub->semester=$req->semester;
-        $sub->save();
+        $this->saveSubject($sub,$req);
     }
 
-    public function deleteTeacher(int $id)
+    public function deleteSubject(int $id)
     {
         $sub = Subject::find($id);
         $sub->delete();
