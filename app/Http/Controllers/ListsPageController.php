@@ -25,14 +25,20 @@ class ListsPageController extends Controller
     }
 
     public function users(){
-        return view('usersList')->with('items',$this->userService->getUsers());
+        return view('usersList')->with('items',$this->userService->showUsers());
     }
 
     public function subjects(){
-        return view('subjects')->with('items', $this->subjectService->showAll());
+        return view('subjects')->with('items', $this->subjectService->showAllSubjects());
     }
 
     public function schedules(int $id){
         return view('schedules')->with('items', $this->scheduleService->showSchedules($id));
+    }
+
+    public function allSchedules(){
+        return view('allschedules')->with([
+            'items' => $this->scheduleService->showAllSchedules(),
+            ]);
     }
 }

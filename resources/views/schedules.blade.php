@@ -7,13 +7,16 @@
             <x-nav-link href="{{ route('subjects') }}" :active="request()->routeIs('subjects')">
                 {{ __('List of all subjects') }}
             </x-nav-link>
+            <x-nav-link href="{{ route('schedules.all') }}" :active="request()->routeIs('schedules.all')">
+                {{ __('List of all schedules') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
     <div class="py-12">
         <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="max-w-max-content bg-white overflow-hidden shadow-md sm:rounded-lg mb-1">
-                <a href="{{route('schedule.show',['id'=>request()->id])}}" class="bg-green-400 flex justify-center items-center w-full text-white px-4 py-1 rounded-md focus:outline-none">Add</a>
+                <a href="{{route('schedule.view',['id'=>request()->id])}}" class="bg-green-400 flex justify-center items-center w-full text-white px-4 py-1 rounded-md focus:outline-none">Add</a>
             </div>
             <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
@@ -54,7 +57,7 @@
                                 <td class="px-4 py-3">{{$item["subject_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["group_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["classroom"]}}</td>
-                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.get', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
+                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.prepare', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
                             </tr>
                         @endforeach
                     </table>

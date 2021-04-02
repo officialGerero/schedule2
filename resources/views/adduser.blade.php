@@ -7,6 +7,9 @@
             <x-nav-link href="{{ route('subjects') }}" :active="request()->routeIs('subjects')">
                 {{ __('List of all subjects') }}
             </x-nav-link>
+            <x-nav-link href="{{ route('schedules.all') }}" :active="request()->routeIs('schedules.all')">
+                {{ __('List of all schedules') }}
+            </x-nav-link>
         </div>
     </x-slot>
 

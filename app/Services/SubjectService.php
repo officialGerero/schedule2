@@ -13,8 +13,11 @@ class SubjectService{
         return Subject::find($id);
     }
 
-    public function showAll(){
+    public function showAllSubjects(){
         return Subject::IdAsc()->paginate(10);
+    }
+    public function getAllSubjectsForUser(int $id){
+        return Subject::where('group_id',$id)->get();
     }
 
     public function addSubject($req){

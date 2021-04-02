@@ -22,32 +22,37 @@ Route::get('/dashboard',[Controllers\DashboardController::class, 'getSchedules']
 
 Route::middleware('admin')->group(function (){
 
-    Route::view('/admin','addsubject')->name('admin');
+    Route::name('subject.')->group(function (){
+        Route::view('/subject.addPage','addsubject')->name('view');
+        Route::post('/subject.add',[Controllers\Admin\SubjectController::class,'addSubject'])->name('add');
+        Route::put('/subject.edit/{id}',[Controllers\Admin\SubjectController::class,'updateSubject'])->name('edit');
+        Route::get('/subject.show/{id}',[Controllers\Admin\SubjectController::class, 'getSubject'])->name('prepare');
+        Route::get('/subject.delete/{id}',[Controllers\Admin\SubjectController::class, 'deleteSubject'])->name('delete');
+    });
 
-    Route::post('/submitTeacher',[Controllers\Admin\SubjectController::class,'addSubject']);
-    Route::put('/editTeacher/{id}',[Controllers\Admin\SubjectController::class,'updateSubject'])->name('edit.teacher');
-    Route::get('/admin.show/{id}',[Controllers\Admin\SubjectController::class, 'getSubject'])->name('edit.prepare');
-    Route::get('/admin.delete/{id}',[Controllers\Admin\SubjectController::class, 'deleteSubject'])->name('edit.delete');
+    Route::name('user.')->group(function (){
+        Route::view('/user.addPage','adduser')->name('view');
+        Route::post('/user.add',[Controllers\Admin\UserController::class, 'addUser'])->name('add');
+        Route::put('/user.edit/{id}',[Controllers\Admin\UserController::class, 'editUser'])->name('edit');
+        Route::get('/user.show/{id}',[Controllers\Admin\UserController::class, 'getUser'])->name('prepare');
+        Route::get('/user.delete/{id}',[Controllers\Admin\UserController::class, 'deleteUser'])->name('delete');
+    });
 
-    Route::view('/user','adduser')->name('user.show');
-    Route::post('/user',[Controllers\Admin\UserController::class, 'addUser'])->name('user.add');
-    Route::put('/user/{id}',[Controllers\Admin\UserController::class, 'editUser'])->name('user.edit');
-    Route::get('/user.show/{id}',[Controllers\Admin\UserController::class, 'getUser'])->name('user.get');
-    Route::get('/user.delete/{id}',[Controllers\Admin\UserController::class, 'deleteUser'])->name('user.delete');
-
-    Route::view('/schedule/{id}','addschedule')->name('schedule.show');// adding page
-    Route::post('/schedule',[Controllers\Admin\ScheduleController::class, 'addSchedule'])->name('schedule.add'); // form add
-    Route::put('/schedule/{id}',[Controllers\Admin\ScheduleController::class, 'editSchedule'])->name('schedule.edit');//form edit
-    Route::get('/schedule.show/{id}',[Controllers\Admin\ScheduleController::class, 'getSchedule'])->name('schedule.get');//put data into form edit
-    Route::get('/schedule.delete/{id}_{returnId}',[Controllers\Admin\ScheduleController::class, 'deleteSchedule'])->name('schedule.delete');// delete user
-
+    Route::name('schedule.')->group(function (){
+        Route::get('/schedule/{id}',[Controllers\Admin\ScheduleController::class, 'prepareToAddScheduleId'])->name('view');
+        Route::post('/schedule',[Controllers\Admin\ScheduleController::class, 'addSchedule'])->name('add');
+        Route::put('/schedule/{id}',[Controllers\Admin\ScheduleController::class, 'editScheduleId'])->name('edit');
+        Route::put('/schedule',[Controllers\Admin\ScheduleController::class, 'editScheduleAll'])->name('edit');
+        Route::get('/schedule.show/{id}',[Controllers\Admin\ScheduleController::class, 'getSchedule'])->name('prepare');
+        Route::get('/schedule.delete/{id}_{returnId}',[Controllers\Admin\ScheduleController::class, 'deleteScheduleId'])->name('delete');
+        Route::get('/schedule.delete/{id}',[Controllers\Admin\ScheduleController::class, 'deleteScheduleAll'])->name('deleteAtAll');
+    });
 
     Route::get('/users', [Controllers\ListsPageController::class,'users'])->name('users');
     Route::get('/subjects', [Controllers\ListsPageController::class,'subjects'])->name('subjects');
     Route::get('/schedules/{id}', [Controllers\ListsPageController::class,'schedules'])->name('schedules');
+    Route::get('/schedules.all', [Controllers\ListsPageController::class,'allSchedules'])->name('schedules.all');
 });
-
-
 
 
 require __DIR__.'/auth.php';

@@ -7,6 +7,9 @@
             <x-nav-link href="{{ route('subjects') }}" :active="request()->routeIs('subjects')">
                 {{ __('List of all subjects') }}
             </x-nav-link>
+            <x-nav-link href="{{ route('schedules.all') }}" :active="request()->routeIs('schedules.all')">
+                {{ __('List of all schedules') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
@@ -55,7 +58,13 @@
                             @csrf
                             <div class="form_item"><p style="margin: 12px; margin-left: 40px;">Add Schedule</p>
                             </div>
-                            <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('day') border-red-500 @enderror" name="day" placeholder="Day"> <br><br>
+                            <select name="day" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('day') border-red-500 @enderror">
+                                <option value="1">Понеділок</option>
+                                <option value="2">Вівторок</option>
+                                <option value="3">Середа</option>
+                                <option value="4">Четвер</option>
+                                <option value="5">П'ятниця</option>
+                            </select><br><br>
                             <select name="time" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('time') border-red-500 @enderror">
                                     <option value="1">8:00-9:20 - 1</option>
                                     <option value="2">9:30-10:50 - 2</option>
@@ -67,9 +76,16 @@
                                     <option value="8">18:30-19:50 - 8</option>
                             </select><br><br>
                             <input type="hidden" value="{{request()->id}}" name="id">
-                            <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('subject_id') border-red-500 @enderror" name="subject_id" placeholder="Subject id"> <br><br>
-                            <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('group_id') border-red-500 @enderror" name="group_id" placeholder="Group id"> <br><br>
-                            <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №"> <br><br>
+                            <select name="subject_id" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('subject_id') border-red-500 @enderror">
+                                <option selected value="">Select the subject</option>
+                                @foreach($subjects as $subject)
+                                <option value="{{$subject->id}}">{{$subject->name_sub}}</option>
+                                @endforeach
+                            </select><br><br>
+                            <select name="group_id" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('group_id') border-red-500 @enderror">
+                                <option selected value="{{$user->id}}">{{$user->name}}</option>
+                            </select><br><br>
+                            <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('classroom') border-red-500 @enderror" name="classroom" placeholder="Classroom №"><br><br>
                             <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submit</button>
                         </form>
                     @endisset

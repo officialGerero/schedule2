@@ -12,13 +12,14 @@ class UserService{
 
     public function isAdmin(int $id){
         $user = User::find($id);
-        if($user->admin){
-            return true;
-        }else return false;
+        return $user->admin;
     }
 
-    public function getUsers(){
+    public function showUsers(){
         return User::IdAsc()->paginate(10);
+    }
+    public function getUsers(){
+        return User::all();
     }
     public function getUserById(int $id){
         return User::find($id);

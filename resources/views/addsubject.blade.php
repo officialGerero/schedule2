@@ -7,6 +7,9 @@
             <x-nav-link href="{{ route('subjects') }}" :active="request()->routeIs('subjects')">
                 {{ __('List of all subjects') }}
             </x-nav-link>
+            <x-nav-link href="{{ route('schedules.all') }}" :active="request()->routeIs('schedules.all')">
+                {{ __('List of all schedules') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
@@ -34,7 +37,7 @@
                         </div><br>
                     @endif
                     @isset($what)
-                            <form action="{{route('edit.teacher',['id' => $what->id])}}" method="post" id="form_odmen">
+                            <form action="{{route('subject.edit',['id' => $what->id])}}" method="post" id="form_odmen">
                                 @csrf
                                 <div class="form_item"><p style="margin: 12px; margin-left: 40px;">Edit Teacher</p>
                                 </div>
@@ -46,7 +49,7 @@
                                     <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Update</button>
                             </form>
                     @else
-                            <form action="submitTeacher" method="post" id="form_odmen">
+                            <form action="{{route('subject.add')}}" method="post" id="form_odmen">
                                 @csrf
                                 <div class="form_item"><p style="margin: 12px; margin-left: 40px;">Add Teacher</p>
                                     <svg class="fill-current h-8 w-8" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" style="float: right; margin-right: 50px; margin-top: -30px;" >

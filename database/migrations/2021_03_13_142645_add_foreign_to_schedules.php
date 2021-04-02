@@ -14,7 +14,7 @@ class AddForeignToSchedules extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->foreign('group_ID')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('group_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

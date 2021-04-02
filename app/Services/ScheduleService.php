@@ -7,17 +7,29 @@ use App\Models\Schedule;
 
 class ScheduleService{
 
-    private $us;
+    private $subjectService;
 
-    public function __construct(UserService $us)
+    private $userService;
+
+
+
+    public function __construct(SubjectService $subjectService, UserService $userService)
     {
-        $this->us = $us;
+        $this->subjectService = $subjectService;
+        $this->userService = $userService;
     }
 
+    public function showAllSchedules(){
+        return Schedule::paginate(10);
+    }
+
+    public function getAllSchedules(){
+        return Schedule::all();
+    }
 
     public function showSchedules(int $id)
     {
-        $user = $this->us->getUserById($id);
+        $user = $this->userService->getUserById($id);
         return $user->schedule()->IdAsc()->paginate(10);
     }
 
@@ -28,8 +40,7 @@ class ScheduleService{
     }
 
     public function getSchedules(){
-        $schedules = auth()->user()->getSchedules()->groupBy('day')->toArray();
-        return $schedules;
+        return auth()->user()->getSchedules()->groupBy('day')->toArray();
     }
 
     public function getSchedulesAPI(){
@@ -59,5 +70,12 @@ class ScheduleService{
     {
         $schedule = Schedule::find($id);
         $schedule->delete();
+    }
+
+    public function getSubjects(int $id){
+        return $this->subjectService->getAllSubjectsForUser($id);
+    }
+    public function getUserInfo(int $id){
+        return $this->userService->getUserById($id);
     }
 }
