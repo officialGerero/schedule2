@@ -54,5 +54,5 @@ Route::middleware('admin')->group(function (){
     Route::get('/schedules.all', [Controllers\ListsPageController::class,'allSchedules'])->name('schedules.all');
 });
 
-
+//TODO: Добавить фильтры в страничку всех предметов и создать сиды дефолтные
 require __DIR__.'/auth.php';
