@@ -14,7 +14,7 @@ class AddForeignkeysToSchedules extends Migration
     public function up()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
+            $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -26,7 +26,7 @@ class AddForeignkeysToSchedules extends Migration
     public function down()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            //
+            $table->dropForeign('schedules_subject_id_foreign');
         });
     }
 }

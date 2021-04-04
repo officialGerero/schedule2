@@ -27,7 +27,7 @@ class AddGroupidToSubjects extends Migration
     public function down()
     {
         Schema::table('subjects', function (Blueprint $table) {
-            //
+            $table->dropColumn('groupID');
         });
     }
 }

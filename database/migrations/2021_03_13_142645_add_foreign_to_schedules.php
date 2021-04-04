@@ -26,7 +26,7 @@ class AddForeignToSchedules extends Migration
     public function down()
     {
         Schema::table('schedules', function (Blueprint $table) {
-            $table->dropForeign('schedules_groupID_foreign');
+            $table->dropForeign('schedules_group_id_foreign');
         });
     }
 }
