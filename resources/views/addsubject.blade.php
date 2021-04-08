@@ -58,7 +58,12 @@
                                 </div>
                                 <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('name_sub') border-red-500 @enderror" name="name_sub" placeholder="Subjects name"> <br><br>
                                 <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('name_teacher') border-red-500 @enderror" name="name_teacher" placeholder="Teachers name"> <br><br>
-                                <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('group_id') border-red-500 @enderror" name="group_id" placeholder="Group id"> <br><br>
+                                <select name="group_id" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('group_id') border-red-500 @enderror">
+                                    <option selected value="">Select the group</option>
+                                    @foreach($groups as $group)
+                                        <option value="{{$group->id}}">{{$group->name}}</option>
+                                    @endforeach
+                                </select> <br><br>
                                 <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('semester') border-red-500 @enderror" name="semester" placeholder="Semester"> <br><br>
                                 <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submit</button>
                             </form>

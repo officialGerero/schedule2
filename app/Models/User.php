@@ -42,15 +42,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function schedule(){
+    public function schedule()
+    {
         return $this->hasMany('\App\Models\Schedule','group_id','id');
     }
 
-    public function getSchedules(){
+    public function getSchedules()
+    {
         return $this->schedule()->with('getSubject')->orderBy('day')->orderBy('time')->get();
     }
 
-    public function scopeIdAsc($query){
+    public function scopeIdAsc($query)
+    {
         return $query->orderBy('id');
     }
 }

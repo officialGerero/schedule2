@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AddSubjectRequest;
 use App\Http\Requests\EditSubjectRequest;
 use App\Services\SubjectService;
-use Illuminate\Http\Request;
 
 class SubjectController extends Controller{
+
     private $subjectService;
 
     public function __construct(SubjectService $subjectService)
@@ -16,7 +16,8 @@ class SubjectController extends Controller{
         $this->subjectService=$subjectService;
     }
 
-    public function getSubject(int $id){
+    public function getSubject(int $id)
+    {
         return view('addsubject')->with('what',$this->subjectService->showById($id));
     }
 
@@ -32,10 +33,15 @@ class SubjectController extends Controller{
         return redirect()->route('subjects')->with('success','Teacher was updated successfully');
     }
 
-    public function deleteSubject(int $id){
+    public function deleteSubject(int $id)
+    {
         $this->subjectService->deleteSubject($id);
         return redirect()->route('subjects')->with('success','Teacher was deleted successfully');
     }
 
+    public function getUsersInfo()
+    {
+        return view('addsubject')->with('groups',$this->subjectService->getUsersInfo());
+    }
 }
 

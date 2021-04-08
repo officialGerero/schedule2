@@ -57,7 +57,7 @@
                                 <td class="px-4 py-3">{{$item["subject_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["group_id"]}}</td>
                                 <td class="px-4 py-3">{{$item["classroom"]}}</td>
-                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.prepare', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
+                                <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.prepare', ['id'=>$item["id"]])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"], 'returnId'=>request()->id])}}">Видалити</a></td>
                             </tr>
                         @endforeach
                     </table>

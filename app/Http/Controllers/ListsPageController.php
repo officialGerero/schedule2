@@ -17,7 +17,6 @@ class ListsPageController extends Controller
 
     private $scheduleService;
 
-
     public function __construct(SubjectService $subjectService, UserService $userService, ScheduleService $scheduleService)
     {
         $this->subjectService = $subjectService;
@@ -25,25 +24,30 @@ class ListsPageController extends Controller
         $this->scheduleService = $scheduleService;
     }
 
-    public function users(){
+    public function users()
+    {
         return view('usersList')->with('items',$this->userService->showUsers());
     }
 
-    public function subjects(){
+    public function subjects()
+    {
         return view('subjects')->with('items', $this->subjectService->showAllSubjects());
     }
 
-    public function schedules(int $id){
+    public function schedules(int $id)
+    {
         return view('schedules')->with('items', $this->scheduleService->showSchedules($id));
     }
 
-    public function allSchedules(){
+    public function allSchedules()
+    {
         return view('allschedules')->with([
             'items' => $this->scheduleService->showAllSchedules(),
             ]);
     }
 
-    public function searchSchedules(SearchSchedulesRequest $req){
+    public function searchSchedules(SearchSchedulesRequest $req)
+    {
         return view('allschedules')->with('items', $this->scheduleService->searchSchedules($req));
     }
 }

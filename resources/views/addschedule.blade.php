@@ -45,7 +45,6 @@
                                 </svg>
                             </div>
                             <input name="_method" type="hidden" value="PUT">
-                            <input name="id" type="hidden" value="{{request()->returnId}}">
                             <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('day') border-red-500 @enderror" name="day" placeholder="Day" value="{{$what->day}}"> <br><br>
                             <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('time') border-red-500 @enderror" name="time" placeholder="Time" value="{{$what->time}}"> <br><br>
                             <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('subject_id') border-red-500 @enderror" name="subject_id" placeholder="Subject id" value="{{$what->subject_id}}"> <br><br>

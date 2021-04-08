@@ -22,13 +22,13 @@ class Subject extends Model
         'semester'
     ];
 
-    public function schedules(){
+    public function schedules()
+    {
         return $this->hasMany('\App\Models\Schedule','subject_id', 'id');
     }
 
-    public function scopeIdAsc($query){
+    public function scopeIdAsc($query)
+    {
         return $query->orderBy('id');
     }
-
-
 }

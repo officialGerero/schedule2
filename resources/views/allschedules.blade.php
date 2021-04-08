@@ -18,7 +18,7 @@
             <div class="bg-white overflow-hidden shadow-md sm:rounded-lg py-2">
                 <form action="{{route('schedules.search')}}" method="get">
                     <div class="float-left">
-                        <input type="radio" name="field" value="1" class="ml-1" id="radio1" checked>
+                        <input type="radio" name="field" value="1" class="ml-1" id="radio1">
                         <label for="radio1">Номер групи</label> <br>
                         <input type="radio" name="field" value="2" class="ml-1" id="radio2">
                         <label for="radio2">Номер предмету</label>
@@ -30,7 +30,7 @@
                 </form>
             </div>
         </div>
-        <div class="max-w-5xl mx-auto lg:px-8">
+        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if(session('success'))
@@ -71,7 +71,7 @@
                                     <td class="px-4 py-3">{{$item["subject_id"]}}</td>
                                     <td class="px-4 py-3">{{$item["group_id"]}}</td>
                                     <td class="px-4 py-3">{{$item["classroom"]}}</td>
-                                    <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.prepare', ['id'=>$item["id"]])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.deleteAtAll', ['id'=>$item["id"]])}}">Видалити</a></td>
+                                    <td class="px-4 py-3 border-l-2"><a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.prepare', ['id'=>$item["id"]])}}">Змінити</a> | <a class="text-blue-700 hover:text-blue-500" href="{{route('schedule.delete', ['id'=>$item["id"]])}}">Видалити</a></td>
                                 </tr>
                             @endforeach
                         @endisset

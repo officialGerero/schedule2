@@ -21,17 +21,18 @@ class Schedule extends Model
         'group_id',
     ];
 
-    public function scopeIdAsc($query){
+    public function scopeIdAsc($query)
+    {
         return $query->orderBy('id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo('\App\Models\User','group_id','id');
     }
 
-    public function getSubject(){
+    public function getSubject()
+    {
         return $this->belongsTo('\App\Models\Subject','subject_id','id');
     }
-
-
 }

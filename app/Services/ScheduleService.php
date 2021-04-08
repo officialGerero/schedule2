@@ -11,19 +11,19 @@ class ScheduleService{
 
     private $userService;
 
-
-
     public function __construct(SubjectService $subjectService, UserService $userService)
     {
         $this->subjectService = $subjectService;
         $this->userService = $userService;
     }
 
-    public function showAllSchedules(){
-        return Schedule::paginate(10);
+    public function showAllSchedules()
+    {
+        return Schedule::IdAsc()->paginate(10);
     }
 
-    public function getAllSchedules(){
+    public function getAllSchedules()
+    {
         return Schedule::all();
     }
 
@@ -39,20 +39,22 @@ class ScheduleService{
         $this->saveSchedule($schedule, $req);
     }
 
-    public function getSchedules(){
+    public function getSchedules()
+    {
         return auth()->user()->getSchedules()->groupBy('day')->toArray();
-    }
-
-    public function getSchedulesAPI(){
-        return response()->json(['error' =>'Nothing to see here big guy']);
     }
 
     public function getScheduleById(int $id)
     {
-        return Schedule::find($id);
+        $schedule = Schedule::find($id);
+        if(!$schedule){
+            abort(404);
+        }
+        return $schedule;
     }
 
-    public function saveSchedule(Schedule $schedule, $req){
+    public function saveSchedule(Schedule $schedule, $req)
+    {
         $schedule->day = $req->day;
         $schedule->time = $req->time;
         $schedule->subject_id = $req->subject_id;
@@ -64,24 +66,33 @@ class ScheduleService{
     public function editSchedule(int $id, $req)
     {
         $schedule = Schedule::find($id);
+        if(!$schedule){
+            abort(404);
+        }
         $this->saveSchedule($schedule, $req);
     }
 
     public function deleteSchedule(int $id)
     {
         $schedule = Schedule::find($id);
+        if(!$schedule){
+            abort(404);
+        }
         $schedule->delete();
     }
 
-    public function getSubjects(int $id){
+    public function getSubjects(int $id)
+    {
         return $this->subjectService->getAllSubjectsForUser($id);
     }
 
-    public function getUserInfo(int $id){
+    public function getUserInfo(int $id)
+    {
         return $this->userService->getUserById($id);
     }
 
-    public function searchSchedules($req){
+    public function searchSchedules($req)
+    {
         if($req->field === "2"){
             return Schedule::where('subject_id',$req->search)->paginate(10);
         }else{

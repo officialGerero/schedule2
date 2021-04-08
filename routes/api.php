@@ -18,5 +18,3 @@ use App\Http\Controllers;
 Route::middleware('auth:api')->get('/api/user', function (Request $request) {
     return $request->user();
 });
-
-Route::get('schedule/{id}_{day}', [Controllers\DashboardController::class, 'getSubjectsAPI']);

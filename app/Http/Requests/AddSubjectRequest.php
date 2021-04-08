@@ -24,9 +24,7 @@ class AddSubjectRequest extends FormRequest
             'name_sub.unique:subjects,name_sub' => 'A subjects with the same name already exists',
             'name_teacher.required' => 'A teachers name is required',
             'name_teacher.max:60' => 'A teachers name can`t be longer than 60 characters',
-            'group_id.required' => 'A group Id is required',
-            'group_id.numeric' => 'A group Id is supposed to be a number',
-            'group_id.max:100' => 'A group Id can`t be bigger than 100',
+            'group_id.required' => 'A group has to be selected',
             'semester.required' => 'A semester is required',
             'semester.numeric' => 'A semester is supposed to be a number',
         ];
@@ -42,7 +40,7 @@ class AddSubjectRequest extends FormRequest
         return [
             'name_sub'=>'required|max:128|unique:subjects,name_sub',
             'name_teacher'=>'required|max:60',
-            'group_id'=>'required|numeric|max:100',
+            'group_id'=>'required',
             'semester' => 'required|numeric',
         ];
     }

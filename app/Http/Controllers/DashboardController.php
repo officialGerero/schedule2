@@ -17,13 +17,8 @@ class DashboardController extends Controller
         $this->scheduleService = $scheduleService;
     }
 
-    public function getSchedules(){
+    public function getSchedules()
+    {
         return view('dashboard')->with('days', $this->scheduleService->getSchedules());
     }
-
-    public function getSubjectsAPI(int $groupID){
-        return response()->json([$this->scheduleService->getSchedulesAPI()],200);
-    }
-
-
 }

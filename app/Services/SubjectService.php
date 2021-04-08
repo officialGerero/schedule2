@@ -7,25 +7,49 @@ use App\Models\Subject;
 
 class SubjectService{
 
+    private $userService;
 
-
-    public function showById(int $id){
-        return Subject::find($id);
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
     }
 
-    public function showAllSubjects(){
+    public function showById(int $id)
+    {
+        $subject = Subject::find($id);
+        if(!$subject){
+            abort(404);
+        }
+        return $subject;
+    }
+
+    public function getUsersInfo()
+    {
+        return $this->userService->getUsers();
+    }
+
+    public function showAllSubjects()
+    {
         return Subject::IdAsc()->paginate(10);
     }
-    public function getAllSubjectsForUser(int $id){
-        return Subject::where('group_id',$id)->get();
+
+    public function getAllSubjectsForUser(int $id)
+    {
+        $subject = Subject::where('group_id',$id)->get();
+        if(!$subject){
+            abort(404);
+        }
+        return $subject;
     }
 
-    public function addSubject($req){
+    public function addSubject($req)
+    {
         $sub = new Subject;
         $this->saveSubject($sub,$req);
     }
 
-    public function saveSubject(Subject $sub, $req){
+    public function saveSubject(Subject $sub, $req)
+    {
         $sub->name_sub=$req->name_sub;
         $sub->name_teacher=$req->name_teacher;
         $sub->group_id=$req->group_id;
@@ -35,13 +59,19 @@ class SubjectService{
 
     public function updateSubject($req, $id)
     {
-        $sub = Subject::find($id);
-        $this->saveSubject($sub,$req);
+        $subject = Subject::find($id);
+        if(!$subject){
+            abort(404);
+        }
+        $this->saveSubject($subject,$req);
     }
 
     public function deleteSubject(int $id)
     {
         $sub = Subject::find($id);
-        $sub->delete();
+        if(!$subject){
+            abort(404);
+        }
+        $subject->delete();
     }
 }
