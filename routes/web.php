@@ -52,6 +52,7 @@ Route::middleware('admin')->group(function (){
     Route::get('/subjects', [Controllers\ListsPageController::class,'subjects'])->name('subjects');
     Route::get('/schedules/{id}', [Controllers\ListsPageController::class,'schedules'])->name('schedules');
     Route::get('/schedules.all', [Controllers\ListsPageController::class,'allSchedules'])->name('schedules.all');
+    Route::get('/schedules.search', [Controllers\ListsPageController::class,'searchSchedules'])->name('schedules.search');
 });
 
 //TODO: Добавить фильтры в страничку всех предметов и создать сиды дефолтные

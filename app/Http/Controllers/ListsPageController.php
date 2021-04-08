@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\SearchSchedulesRequest;
 use App\Services\ScheduleService;
 use App\Services\SubjectService;
 use App\Services\UserService;
@@ -40,5 +41,9 @@ class ListsPageController extends Controller
         return view('allschedules')->with([
             'items' => $this->scheduleService->showAllSchedules(),
             ]);
+    }
+
+    public function searchSchedules(SearchSchedulesRequest $req){
+        return view('allschedules')->with('items', $this->scheduleService->searchSchedules($req));
     }
 }

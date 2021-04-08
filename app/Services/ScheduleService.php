@@ -51,6 +51,7 @@ class ScheduleService{
     {
         return Schedule::find($id);
     }
+
     public function saveSchedule(Schedule $schedule, $req){
         $schedule->day = $req->day;
         $schedule->time = $req->time;
@@ -75,7 +76,16 @@ class ScheduleService{
     public function getSubjects(int $id){
         return $this->subjectService->getAllSubjectsForUser($id);
     }
+
     public function getUserInfo(int $id){
         return $this->userService->getUserById($id);
+    }
+
+    public function searchSchedules($req){
+        if($req->field === "2"){
+            return Schedule::where('subject_id',$req->search)->paginate(10);
+        }else{
+            return Schedule::where('group_id',$req->search)->paginate(10);
+        }
     }
 }

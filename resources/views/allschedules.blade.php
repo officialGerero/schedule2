@@ -14,7 +14,23 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-5xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-max-content ml-6/12 lg:pr-8 lg:pl-10 pb-2">
+            <div class="bg-white overflow-hidden shadow-md sm:rounded-lg py-2">
+                <form action="{{route('schedules.search')}}" method="get">
+                    <div class="float-left">
+                        <input type="radio" name="field" value="1" class="ml-1" id="radio1" checked>
+                        <label for="radio1">Номер групи</label> <br>
+                        <input type="radio" name="field" value="2" class="ml-1" id="radio2">
+                        <label for="radio2">Номер предмету</label>
+                    </div>
+                    <div class="float-right mt-1">
+                        <input name="search" type="text" class="pr-6 pl-2 py-2 ml-3 border focus:ring-gray-500 focus:border-gray-900 sm:text-sm border-gray-300 rounded-md focus:outline-none">
+                        <button type="submit" class="bg-green-400 justify-center items-center text-white px-4 py-2 mr-1 rounded-md focus:outline-none">Search</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="max-w-5xl mx-auto lg:px-8">
             <div class="bg-white overflow-hidden shadow-md sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     @if(session('success'))

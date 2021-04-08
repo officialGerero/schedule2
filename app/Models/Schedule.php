@@ -18,7 +18,7 @@ class Schedule extends Model
         'day',
         'time',
         'subject_id',
-        'group_ID',
+        'group_id',
     ];
 
     public function scopeIdAsc($query){
