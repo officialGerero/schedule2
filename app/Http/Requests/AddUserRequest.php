@@ -27,6 +27,8 @@ class AddUserRequest extends FormRequest
             'email.unique:users' => 'User with this email already exists',
             'password.required' => 'A password is required',
             'password.min:8' => 'Password minimal length is 8 characters',
+            'admin.required' => 'Admin field is required',
+            'admin.boolean' => 'Admin field must be either 0 or 1',
         ];
     }
 
@@ -41,6 +43,7 @@ class AddUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8',
+            'admin'=>'required|boolean',
         ];
     }
 }

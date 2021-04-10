@@ -45,7 +45,7 @@
                                 <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('name') border-red-500 @enderror" name="name" placeholder="Name" value="{{$what->name}}"> <br><br>
                                 <input type="email" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('email') border-red-500 @enderror" name="email" placeholder="Email" value="{{$what->email}}"> <br><br>
                                 <input type="password" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('password') border-red-500 @enderror" name="password" placeholder="Password" value=""> <br><br>
-                                <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none" name="admin" placeholder="Admin" value="{{$what->admin}}"> <br><br>
+                                <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('admin') border-red-500 @enderror" name="admin" placeholder="Admin" value="{{$what->admin}}"> <br><br>
                                 <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Update</button>
                         </form>
                     @else
@@ -59,7 +59,7 @@
                                 <input type="text" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('name') border-red-500 @enderror" name="name" placeholder="Name"> <br><br>
                                 <input type="email" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('email') border-red-500 @enderror" name="email" placeholder="Email"> <br><br>
                                 <input type="password" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('password') border-red-500 @enderror" name="password" placeholder="Password"> <br><br>
-                                <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none" name="admin" placeholder="Admin" value="0"> <br><br>
+                                <input type="number" class="pr-4 pl-10 py-2 border focus:ring-gray-500 focus:border-gray-900 w-full sm:text-sm border-gray-300 rounded-md focus:outline-none @error('admin') border-red-500 @enderror" name="admin" placeholder="Admin" value="0"> <br><br>
                                 <button type="submit" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md focus:outline-none">Submit</button>
                         </form>
                     @endisset

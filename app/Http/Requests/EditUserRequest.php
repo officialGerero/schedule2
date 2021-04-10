@@ -26,6 +26,8 @@ class EditUserRequest extends FormRequest
             'email.max:255' => 'Email can`t be longer than 255 characters',
             'password.required' => 'A password is required',
             'password.min:8' => 'Password minimal length is 8 characters',
+            'admin.required' => 'Admin field is required',
+            'admin.boolean' => 'Admin field must be either 0 or 1',
         ];
     }
 
@@ -40,6 +42,7 @@ class EditUserRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
+            'admin'=>'required|boolean',
         ];
     }
 }
