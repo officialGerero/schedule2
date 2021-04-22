@@ -2,16 +2,18 @@
 To install this proj:
 
 -have nodejs installed
-
+-have composer installed
 -have laravel installed
 
 -clone this repo 
 
--run npm install && npm run dev in the proj folder
+-run: composer install
 
--migrate the database
+-migrate the database: php artisan migrate
 
--php artisan serve
+-run seeder: php artisan db:seed
+
+-to start local server run: php artisan serve
 
 ?????
 
